@@ -30,7 +30,7 @@ Before you can run the ChatWorldApplication, you need to have the following inst
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/ChatWorldApplication.git
+    git clone https://github.com/ManjulaDoddavula/CBT-CIP/ChatWorldApplication.git
     cd ChatWorldApplication
     ```
 
