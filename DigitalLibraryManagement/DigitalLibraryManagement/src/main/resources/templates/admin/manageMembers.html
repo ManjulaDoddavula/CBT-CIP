@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Members</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Manage Library Members</h2>
+    <form action="/admin/members" method="post">
+        <div>
+            <label>Name:</label>
+            <input type="text" name="name" required>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+        </div>
+        <div>
+            <button type="submit">Add Member</button>
+        </div>
+    </form>
+    <h3>Existing Members</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="member : ${members}">
+                <td th:text="${member.id}"></td>
+                <td th:text="${member.name}"></td>
+                <td th:text="${member.email}"></td>
+                <td>
+                    <form th:action="@{'/admin/members/' + ${member.id}}" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
